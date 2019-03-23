@@ -5,7 +5,7 @@ import zipfile
 
 import requests
 
-from gs_extensions.exceptions import NoExtensionVersionForGnomeShell, ExtensionNotFoundInHub, ExtensionAlreadyActivated
+from gs_extensions.exceptions import NoExtensionVersionForGnomeShell, ExtensionNotFoundInHub
 
 
 class GnomeShellExtensionWrapper:
@@ -58,7 +58,6 @@ class GnomeShellExtensionWrapper:
     def __get_version(self):
         response = requests.get(self.EXTENSIONS_API_URL, {'pk': self.pk, 'uuid': self.uuid}).json()
         versions_list = response['shell_version_map']
-        q = self.gnome_shell.get_full_version()
         if self.gnome_shell.get_full_version() in versions_list:
             return versions_list[self.gnome_shell.get_full_version()]['version']
         elif self.gnome_shell.get_short_version() in versions_list:

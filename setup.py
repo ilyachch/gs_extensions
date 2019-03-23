@@ -39,8 +39,11 @@ setuptools.setup(
         ]
     },
     classifiers=[
-        "Environment :: Web Environment",
+        "Development Status :: 3 - Alpha",
+        "Environment :: Console",
         "Intended Audience :: Developers",
+        "Intended Audience :: System Administrators",
+        "Intended Audience :: End Users/Desktop",
         "License :: OSI Approved :: MIT License",
         "Operating System :: POSIX :: Linux",
         "Programming Language :: Python",

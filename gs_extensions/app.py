@@ -1,7 +1,6 @@
 import argparse
 import pathlib
 
-from gs_extensions.exceptions import ExtensionAlreadyActivated, ExtensionAlreadyLoaded
 from gs_extensions.gnome_shell_extension_wrapper import GnomeShellExtensionWrapper
 from gs_extensions.gnome_shell_wrapper import GnomeShellWrapper
 
@@ -21,9 +20,9 @@ class App:
             self.dump()
         elif self.args.action == self.ACTION_INSTALL and self.args.reverse is not None:
             self.revert_extensions()
-        elif self.args.action == self.ACTION_INSTALL and not self.args.ids and len(self.args.extension_uuids) > 0:
+        elif self.args.action == self.ACTION_INSTALL and not self.args.ids and len(self.args.extensions) > 0:
             self.install_extensions_by_uuid()
-        elif self.args.action == self.ACTION_INSTALL and self.args.ids and len(self.args.extension_uuids) > 0:
+        elif self.args.action == self.ACTION_INSTALL and self.args.ids and len(self.args.extensions) > 0:
             self.install_extensions_by_ids()
         else:
             print(self.parser.print_help())
@@ -39,20 +38,20 @@ class App:
 
     def install_extensions_by_uuid(self):
         extensions_list = [GnomeShellExtensionWrapper.from_uuid(uuid=uuid, gnome_shell=self.gnome_shell) for uuid in
-                           self.args.extension_uuids]
+                           self.args.extensions]
         for extension in extensions_list:
             extension.install()
 
     def install_extensions_by_ids(self):
         extensions_list = [GnomeShellExtensionWrapper.from_pk(pk=uuid, gnome_shell=self.gnome_shell) for uuid in
-                           self.args.extension_uuids]
+                           self.args.extensions]
         for extension in extensions_list:
             extension.install()
 
     def __process_args(self):
         self.parser.add_argument('action', type=str, choices=[self.ACTION_DUMP, self.ACTION_INSTALL])
         self.parser.add_argument('-i', '--ids', action='store_true', default=False)
-        self.parser.add_argument('extension_uuids', type=str, nargs='*')
+        self.parser.add_argument('extensions', type=str, nargs='*')
         self.parser.add_argument('-r', '--reverse', type=pathlib.Path)
         return self.parser.parse_args()
 
