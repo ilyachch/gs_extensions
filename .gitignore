@@ -105,3 +105,6 @@ venv.bak/
 
 # IDE settings
 .idea
+
+# Project specific files
+extensions.txt
