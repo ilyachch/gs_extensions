@@ -4,8 +4,15 @@ CLI utility to manage gnome shell extensions
 
 Allows to install gnome shell extensions from terminal or sh script.
 
-## usage:
+## Installation
 
+To install run:
+
+```bash
+$ pip install gs_extensions
+```
+
+## Usage:
 
 To view the list of installed extensions:
 
