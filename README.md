@@ -1,4 +1,4 @@
-# sh_extensions
+# gs_extensions
 
 CLI utility to manage gnome shell extensions
 
