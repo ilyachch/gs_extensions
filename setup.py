@@ -36,6 +36,7 @@ setuptools.setup(
             'twine',
             'wheel',
             'setuptools',
+            'bumpversion',
         ]
     },
     classifiers=[

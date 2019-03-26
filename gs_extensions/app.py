@@ -32,7 +32,7 @@ class App:
             print(extension.uuid)
 
     def revert_extensions(self):
-        extensions_list = GnomeShellExtensionWrapper.from_file(self.args.reverse, self.gnome_shell)
+        extensions_list = self.gnome_shell.get_extensions_from_file(self.args.reverse)
         for extension in extensions_list:
             extension.install()
 
@@ -43,7 +43,7 @@ class App:
             extension.install()
 
     def install_extensions_by_ids(self):
-        extensions_list = [GnomeShellExtensionWrapper.from_pk(pk=uuid, gnome_shell=self.gnome_shell) for uuid in
+        extensions_list = [GnomeShellExtensionWrapper.from_pk(pk=int(uuid), gnome_shell=self.gnome_shell) for uuid in
                            self.args.extensions]
         for extension in extensions_list:
             extension.install()
