@@ -13,22 +13,22 @@ class TestGnomeShellWrapper(unittest.TestCase):
     @patch('gs_extensions.gnome_shell_wrapper.subprocess.check_output', return_value='GNOME Shell 3.28.3'.encode())
     def test_full_version(self, _):
         gs_wrapper = GnomeShellWrapper()
-        self.assertEqual(gs_wrapper.get_full_version, '3.28.3')
+        self.assertEqual(gs_wrapper.full_version, '3.28.3')
 
     @patch('gs_extensions.gnome_shell_wrapper.subprocess.check_output', return_value='GNOME Shell 3.28.3'.encode())
     def test_short_version(self, _):
         gs_wrapper = GnomeShellWrapper()
-        self.assertEqual(gs_wrapper.get_short_version, '3.28')
+        self.assertEqual(gs_wrapper.short_version, '3.28')
 
     @patch('gs_extensions.gnome_shell_wrapper.subprocess.check_output', return_value='GNOME Shell 3.28'.encode())
     def test_full_version_for_short_gnome_version(self, _):
         gs_wrapper = GnomeShellWrapper()
-        self.assertEqual(gs_wrapper.get_full_version, '3.28')
+        self.assertEqual(gs_wrapper.full_version, '3.28')
 
     @patch('gs_extensions.gnome_shell_wrapper.subprocess.check_output', return_value='GNOME Shell 3.28'.encode())
     def test_short_version_for_short_gnome_version(self, _):
         gs_wrapper = GnomeShellWrapper()
-        self.assertEqual(gs_wrapper.get_short_version, '3.28')
+        self.assertEqual(gs_wrapper.short_version, '3.28')
 
     @patch('gs_extensions.gnome_shell_wrapper.subprocess.check_output',
            **{'return_value.decode.side_effect': GnomeShellNotInstalledError()})

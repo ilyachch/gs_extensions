@@ -30,6 +30,8 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=['tests*', ]),
     install_requires=[
         "requests",
+        "vext",
+        "vext.gi",
     ],
     extras_require={
         'dev': [

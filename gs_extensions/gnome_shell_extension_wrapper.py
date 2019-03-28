@@ -44,8 +44,7 @@ class GnomeShellExtensionWrapper:
     def install(self):
         self.gnome_shell.create_extensions_folder_if_not_exists()
         self.download()
-        self.activate()
-        self.gnome_shell.add_installed_extension(self)
+        self.gnome_shell.install_extension(self)
 
     def download(self):
         installed_gnome_shell_extensions = self.gnome_shell.get_installed_extensions()
@@ -75,10 +74,10 @@ class GnomeShellExtensionWrapper:
     def __get_version(self):
         response = self.__get_from_net_or_cache(self.EXTENSIONS_API_URL, {'pk': self.pk, 'uuid': self.uuid})
         versions_list = response.json()['shell_version_map']
-        if self.gnome_shell.get_full_version in versions_list:
-            return versions_list[self.gnome_shell.get_full_version]['version']
-        elif self.gnome_shell.get_short_version in versions_list:
-            return versions_list[self.gnome_shell.get_short_version]['version']
+        if self.gnome_shell.full_version in versions_list:
+            return versions_list[self.gnome_shell.full_version]['version']
+        elif self.gnome_shell.short_version in versions_list:
+            return versions_list[self.gnome_shell.short_version]['version']
         raise NoExtensionVersionForGnomeShell()
 
     def __download_and_unzip(self):
