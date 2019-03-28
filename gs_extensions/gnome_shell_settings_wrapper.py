@@ -1,3 +1,11 @@
+"""
+Gnome shell settings wrapper
+
+Based on gnome-shell-extensions-tool:
+https://github.com/GNOME/gnome-shell/blob/master/src/gnome-shell-extension-tool.in
+
+"""
+
 from gi.repository import Gio
 
 
